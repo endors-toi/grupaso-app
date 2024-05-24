@@ -1,25 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:grupaso_app/pages/login_page.dart';
+import 'package:grupaso_app/services/auth_service.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final User? user;
+  HomePage({this.user}) : super();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Home Page"),
-          elevation: 2,
-        ),
         body: Center(
-          child: ElevatedButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return LoginPage();
-              }));
-            },
-            child: Text("Login"),
-          ),
-        ));
+      child: Text("Bienvenido ${user?.displayName}!"),
+    ));
   }
 }
