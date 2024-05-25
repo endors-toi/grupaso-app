@@ -100,10 +100,17 @@ class _LoginPageState extends State<LoginPage> {
                             color: Colors.deepPurpleAccent,
                             borderRadius: BorderRadius.circular(30),
                             border: Border.all(color: Colors.deepPurpleAccent)),
-                            child: FilledButton(
+                            child: ElevatedButton(
                               onPressed: _login, 
-                              child: Text('Iniciar sesion'), 
-                              style: ButtonStyle(backgroundColor: WidgetStateColor.transparent),)
+                              child: Text('Iniciar sesion', 
+                                style: TextStyle(
+                                  color: Colors.white
+                                ),
+                              ),
+                              style: ButtonStyle(
+                                backgroundColor: WidgetStatePropertyAll(Colors.deepPurpleAccent)
+                              )
+                            )
                         )
                       ]
                     )
