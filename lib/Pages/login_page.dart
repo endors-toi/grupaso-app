@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:grupaso_app/Pages/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -8,17 +9,13 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController emailCtrl = TextEditingController();
+  TextEditingController passCtrl = TextEditingController();
+  String resultados = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
-      decoration: BoxDecoration(
-          gradient: LinearGradient(colors: <Color>[
-        Color(0xffCDE8E5),
-        Color(0xffEEF7FF),
-        Color(0xff7AB2B2),
-        Color(0xff4D869C)
-      ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
       child: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -26,25 +23,30 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 //LOGO sdadsa
 
-                Text(
-                  'Login',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 32),
+                Container(
+                  height: 150,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage('/images/grupaso.png'),
+                    ),
+                  ),
                 ),
-
                 //Email
                 Padding(
                     padding: EdgeInsets.symmetric(horizontal: 20.0),
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xffCDE8E5),
+                          color: Color(0xffF0F3FF),
                           border: Border.all(
-                            color: Color(0xff4D869C),
+                            color: Colors.purple,
                           ),
                           borderRadius: BorderRadius.circular(15)),
                       child: Padding(
                         padding: EdgeInsets.only(left: 20.0),
                         child: TextField(
+                          controller: emailCtrl,
                           decoration: InputDecoration(
+                              icon: Icon(Icons.account_circle_rounded),
                               border: InputBorder.none,
                               hintText: 'Ingrese Email'),
                         ),
@@ -58,30 +60,75 @@ class _LoginPageState extends State<LoginPage> {
                     padding: EdgeInsets.symmetric(horizontal: 20.0),
                     child: Container(
                       decoration: BoxDecoration(
-                          color: Color(0xffCDE8E5),
+                          color: Color(0xffF0F3FF),
                           border: Border.all(
-                            color: Color(0xff4D869C),
+                            color: Colors.purple,
                           ),
                           borderRadius: BorderRadius.circular(15)),
                       child: Padding(
                         padding: EdgeInsets.only(left: 20.0),
                         child: TextField(
+                          controller: passCtrl,
                           obscureText: true,
                           decoration: InputDecoration(
+                              icon: Icon(Icons.key),
                               border: InputBorder.none,
                               hintText: 'Ingrese Contraseña'),
                         ),
                       ),
                     )),
+
                 Padding(
                   padding: EdgeInsets.all(20.0),
                   child: Container(
                     padding: EdgeInsets.all(15.0),
                     decoration: BoxDecoration(
-                      color: Color(0xff4D869C),
+                      color: Colors.purple,
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    child: Center(
+                    child: TextButton(
+                      onPressed: () {
+                        String email = emailCtrl.text;
+                        String password = passCtrl.text;
+
+                        print('EMAIL:$email EDAD:$password');
+                        if (email == 'user1@mail.com' &&
+                            password == 'pass123') {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()));
+                        } else {
+                          setState(() {
+                            resultados = 'EMAIL:$email PASSWORD:$password';
+                            if (email != 'user1@mail.com' &&
+                                password != 'pass123') {
+                              showDialog(
+                                  barrierDismissible: true,
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Row(
+                                        children: [
+                                          Icon(Icons.error,
+                                              color: Colors.red.shade800),
+                                          Text(
+                                            '  ERROR',
+                                            style: TextStyle(
+                                                color: Colors.red.shade800),
+                                          ),
+                                        ],
+                                      ),
+                                      content: Text(
+                                          'El usuario o la contraseña son incorrectos.',
+                                          style: TextStyle(
+                                              color: Colors.red.shade900)),
+                                    );
+                                  });
+                            }
+                          });
+                        }
+                      },
                       child: Text(
                         "Iniciar Sesión",
                         style: TextStyle(
@@ -91,7 +138,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
