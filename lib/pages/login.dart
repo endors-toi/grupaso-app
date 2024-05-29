@@ -1,6 +1,79 @@
 import 'package:flutter/material.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  TextEditingController user = TextEditingController();
+  TextEditingController pass = TextEditingController();
+  String mensajeError = "";
+  String usuarioValido = "user1@gmail.com";
+  String contrasenaValida = "user1";
+
+  void Validador() {
+    setState(() {
+      if (user.text.isEmpty || pass.text.isEmpty) {
+        mensajeError = 'Campos vacios';
+        showDialog(
+          context: context, 
+          builder: (BuildContext context){
+            return AlertDialog(
+              title: Text("$mensajeError"),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('Aceptar'),
+                  onPressed: () {
+                    mensajeError = "";
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          }
+        );
+      } else if (user.text != usuarioValido || pass.text != contrasenaValida){
+        mensajeError = 'Datos invalidos';
+        showDialog(
+          context: context, 
+          builder: (BuildContext context){
+            return AlertDialog(
+              title: Text("$mensajeError"),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('Aceptar'),
+                  onPressed: () {
+                    mensajeError = "";
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          }
+        );
+      } else {
+        showDialog(
+          context: context, 
+          builder: (BuildContext context){
+            return AlertDialog(
+              title: Text("Sesion Iniciada"),
+              actions: <Widget>[
+                TextButton(
+                  child: Text('Aceptar'),
+                  onPressed: () {
+                    mensajeError = "";
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            );
+          }
+        );
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,6 +101,7 @@ class Login extends StatelessWidget {
                 ),
                 const SizedBox(height: 50.0),
                 TextField(
+                  controller: user, // Asigna el controlador aquí
                   decoration: InputDecoration(
                     filled: true,
                     fillColor: Colors.white,
@@ -42,6 +116,7 @@ class Login extends StatelessWidget {
                 ),
                 const SizedBox(height: 20.0),
                 TextField(
+                  controller: pass, // Asigna el controlador aquí
                   obscureText: true,
                   decoration: InputDecoration(
                     filled: true,
@@ -61,13 +136,11 @@ class Login extends StatelessWidget {
                   children: [
                     ElevatedButton(
                       onPressed: () {
-                        // Implementar funcionalidad de login aquí
+                        Validador();
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors
-                            .white, // Usar backgroundColor en lugar de primary
-                        foregroundColor: const Color(
-                            0xFF7C03FF), // Usar foregroundColor en lugar de onPrimary
+                        backgroundColor: Colors.white, 
+                        foregroundColor: const Color(0xFF7C03FF), 
                         padding: const EdgeInsets.symmetric(
                             vertical: 15.0, horizontal: 30.0),
                         shape: RoundedRectangleBorder(
@@ -76,30 +149,6 @@ class Login extends StatelessWidget {
                       ),
                       child: const Text(
                         'Login',
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          color: Color(0xFF7C03FF),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 20.0), // Espacio entre los botones
-                    ElevatedButton(
-                      onPressed: () {
-                        // Implementar funcionalidad de registrar aquí
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors
-                            .white, // Usar backgroundColor en lugar de primary
-                        foregroundColor: const Color(
-                            0xFF7C03FF), // Usar foregroundColor en lugar de onPrimary
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 15.0, horizontal: 30.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                      ),
-                      child: const Text(
-                        'Registrar',
                         style: TextStyle(
                           fontSize: 18.0,
                           color: Color(0xFF7C03FF),
