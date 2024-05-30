@@ -62,6 +62,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_fadein:
+    dependency: "direct main"
+    description:
+      name: flutter_fadein
+      sha256: ab6830acf1d09087e069c363fd063a625b2ebeb5153b74fa15b1bce108c212e4
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   flutter_lints:
     dependency: "direct dev"
     description:
@@ -139,14 +147,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.12.0"
-  nested:
-    dependency: transitive
-    description:
-      name: nested
-      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.0"
   path:
     dependency: transitive
     description:
@@ -155,14 +155,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.9.0"
-  provider:
-    dependency: "direct main"
-    description:
-      name: provider
-      sha256: c8a055ee5ce3fd98d6fc872478b03823ffdb448699c6ebdbbc71d59b596fd48c
-      url: "https://pub.dev"
-    source: hosted
-    version: "6.1.2"
   sky_engine:
     dependency: transitive
     description: flutter

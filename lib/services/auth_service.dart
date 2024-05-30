@@ -8,7 +8,8 @@ class User {
 
 class AuthService {
   Map<String, User> _users = {
-    'user1@usm.cl': User('user1@usm.cl', 'password1', 'User 1'),
+    'diegolara@usm.cl':
+        User('diegolara@usm.cl', 'contraseñasegura123', 'Diego Lara'),
     'user2@usm.cl': User('user2@usm.cl', 'password2', 'User 2'),
     'user3@usm.cl': User('user3@usm.cl', 'password3', 'User 3'),
   };
